@@ -20,7 +20,7 @@ time_Step=seq(0,365,by=1)
 #solving ODE
 solution=ode(times = time_Step,y=initiaConditions,func = SIS_Model,parms = param)
 #convert to dataFrame
-dF=as.data.frame(solution)
+dF=as.data.frame(solution)%>% tibble()
 head(dF)
 matplot(dF$time, dF[,2:3], type = "l", lty = 1, col = c("blue", "red"),
         xlab = "Time (days)", ylab = "Number of people")
@@ -39,7 +39,7 @@ model_plot <- result_df %>%
 
 
 ggplot(model_plot)+
-  geom_line(aes(time, value, col=name), linewidth=1.5)+
+  geom_line(aes(time, value, col=name), linewidth=0.2)+
   scale_x_continuous("Time")+
   scale_y_continuous("Population")+
   scale_color_brewer("Compartments", palette = "Set2")+
