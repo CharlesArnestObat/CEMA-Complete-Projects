@@ -44,3 +44,7 @@ df=as_tibble(as.data.frame(model_solution))
 df
 df=as_tibble(as.data.frame(model_solution))%>% pivot_longer(names_to = "variable", cols = !1)
 df
+df %>% ggplot()+geom_line(aes(x=time,y=value,colour = variable))+
+  theme_minimal()+
+  labs(title="Mosquito/Vector-Human Compartments",y=("population"),colour="species")+
+  facet_wrap(~variable)
